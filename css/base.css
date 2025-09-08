@@ -1,0 +1,95 @@
+
+/* Basic Reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+/* Base styles for the application */
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	line-height: 1.6;
+}
+
+header {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #ffffff;
+	background-color: #002266;
+	min-height: 200px;
+}
+
+
+#three-column {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+#three-column > * {
+	padding: 10px;
+	flex-grow: 1;
+}
+
+nav > ul {
+	list-style-type: none;
+	line-height: 1.6;
+
+	li {
+		padding: 5px 10px;
+		background-color: #dddddd;
+		margin: 0.5rem 0;
+		border-radius: 4px;
+		text-align: center;
+	}
+
+	li:first-child {
+		margin-top: 0;
+	}
+
+	li:last-child {
+		margin-bottom: 0;
+	}
+
+	li:hover {
+		background-color: #bbbbbb;
+		cursor: pointer;
+	}
+
+	li.selected {
+		background-color: #002266;
+		color: #ffffff;
+		font-weight: bold;
+
+		a {
+			color: #ffffff;
+		}
+	}
+}
+
+#three-column > main {
+	flex-grow: 4;
+}
+
+footer {
+	width: 100%;
+	text-align: center;
+	padding: 10px 0;
+	font-size: 0.9em;
+	background-color: #f0f0f0;
+}
+
+a {
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+	color: #000000;
+}
