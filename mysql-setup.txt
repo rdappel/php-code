@@ -1,0 +1,47 @@
+# login as root
+sudo mysql -u root -p (PW is single space)
+
+# native mode
+(Ctrl + L)
+
+# update password
+alter user root@localhost identify with mysql_native_password by 'dbdev123';
+
+# force update
+flush privileges;
+
+#exit
+exit
+
+#restart mysql
+sudo systemctl restart mysql
+
+#login again as root (to check pw)
+sudo mysql -u root -p (pw is dbdev123)
+
+#create user
+create user 'dbuser'@'%' identified with mysql_native_password by 'dbdev123';
+
+#create db
+create database phpclass
+
+#give user access to db
+grant all privileges on phpclass.* to 'dbuser'@'%';
+
+#exit
+exit
+
+#open config file to edit
+sudo gedit /etc/mysql/mysql.conf.d/mysqld.cnf
+
+#-------- (line 31-32) -
+comment out "bind-address" line
+and "mysqlx-bind-address" line
+# save and quit
+
+#back in terminal, restart mysql
+sudo systemctl restart mysql
+
+
+
+
