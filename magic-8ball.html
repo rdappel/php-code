@@ -1,0 +1,78 @@
+<?php // no spaces before <?php or session_start() or headers won't work
+
+session_start();
+
+
+// todo: shorten this by moving the = "" line above the if statement
+if (isset($_SESSION['previousQuestion'])) {
+	$previousQuestion = $_SESSION['previousQuestion'];
+} else {
+	$previousQuestion = "";
+}
+
+// var_dump($test);
+$responses = [
+	"Ask again later",
+	"Yes",
+	"No",
+	"It appears to be so",
+	"Definitely",
+	"Without a doubt",
+	"Very doubtful",
+	"Most likely",
+	"Better not tell you now",
+	"Concentrate and ask again",
+	"Don't count on it",
+	"Outlook not so good",
+	"Signs point to yes",
+	"Yes, definitely",
+	"You may rely on it",
+	"Reply hazy, try again",
+	"Cannot predict now",
+	"Outlook good",
+	"As I see it, yes",
+	"Don't bet on it"
+]
+
+
+
+if (isset($_POST['question'])) {
+
+	$question = trim($_POST['question']);
+	$lastChar = substr($question, -1); // strlen() first
+
+	if ($lastChar != "?") {
+		$answer = "That doesn't look like a question. Please ask a question ending with a question mark.";
+	} else if ($question == $previousQuestion) {
+		$answer = "You've already asked that question. Please ask a different question.";
+	} else {
+		// success
+		$index = mt_rand(0, count($responses) - 1);
+		$answer = $responses[$index];
+
+		// store the question in the session
+		$_SESSION['previousQuestion'] = $question;
+	}
+
+} else {
+	$question = "";
+	$answer = "";
+}
+
+?>
+
+
+<main>
+	<h2>Magic 8 Ball</h2>
+	<br>
+
+	<p><?=$answer?></p>
+	<br>
+
+	<form action="" method="post">
+		<!-- get/post (get for bookmarked) -->
+		<input type="text" name="question" placeholder="Your question here" value="<?=htmlspecialchars($question);?>">
+		<input type="submit" value="Ask the Magic 8 Ball">
+	</form>
+
+</main>
