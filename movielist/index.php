@@ -29,8 +29,14 @@
 
     <?php
 try {
-    $con = mysqli_connect("localhost", "dbuser", "dbdev123");
-    mysqli_select_db($con, "phpclass");
+
+    function getConnection() {
+        $con = mysqli_connect("localhost", "dbuser", "dbdev123");
+        mysqli_select_db($con, "phpclass");
+        return $con;
+    }
+
+    $con = getConnection()
 
     $results = mysqli_query("SELECT * FROM movielist");
 
