@@ -12,7 +12,7 @@ $memberKey = sprintf(...) // uses mt_rand
 $hashedPassword = md5($password . $memberKey)
 
 ?>
-
+```
 
 [ ] Make email unique (new unique key for memberEmail)
 [ ] index
